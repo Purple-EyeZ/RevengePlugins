@@ -36,12 +36,19 @@ export default {
         if (!Popup) return
 
         unpatch = instead('show', Popup, (args, fn) => {
-            const text = [args?.[0]?.children?.props?.title?.trim(), args?.[0]?.body?.trim()]
+            const popup = args?.[0]
+            if (!popup?.onConfirm || typeof popup.onConfirm !== 'function') {
+                return fn(...args)
+            }
+
+            const title = popup.children?.props?.title
+            const body = popup.body
 
             const shouldConfirm = (type: 'message' | 'embed') =>
-                storage[KEYS[type].storage] && text.includes(autoConfirmMessages[type])
+                storage[KEYS[type].storage] &&
+                (title?.includes(autoConfirmMessages[type]) || body?.includes(autoConfirmMessages[type]))
 
-            return shouldConfirm('message') || shouldConfirm('embed') ? args?.[0]?.onConfirm?.() : fn(...args)
+            return shouldConfirm('message') || shouldConfirm('embed') ? popup.onConfirm() : fn(...args)
         })
     },
 
