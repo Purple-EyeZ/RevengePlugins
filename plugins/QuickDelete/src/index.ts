@@ -37,12 +37,16 @@ export default {
 
         unpatch = instead('show', Popup, (args, fn) => {
             const popup = args?.[0]
-            if (!popup?.onConfirm || typeof popup.onConfirm !== 'function') {
+            const title = popup?.children?.props?.title
+            const body = popup?.body
+
+            if (
+                !popup?.onConfirm ||
+                typeof popup.onConfirm !== 'function' ||
+                (typeof title !== 'string' && typeof body !== 'string')
+            ) {
                 return fn(...args)
             }
-
-            const title = popup.children?.props?.title
-            const body = popup.body
 
             const shouldConfirm = (type: 'message' | 'embed') =>
                 storage[KEYS[type].storage] &&
