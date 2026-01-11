@@ -8,12 +8,12 @@ const { intl, t: intlMap } = findByProps('intl')
 
 const KEYS = {
     message: {
-        hash: 'AMvpS0',
+        hash: 'AMvpS4',
         storage: 'autoConfirmMessage',
         default: true,
     },
     embed: {
-        hash: 'vXZ+Fh',
+        hash: 'vXZ+Fo',
         storage: 'autoConfirmEmbed',
         default: true,
     },
