@@ -1,8 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.2/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.3.15/schema.json",
   "linter": {
     "enabled": true,
     "rules": {
@@ -52,17 +49,6 @@
     }
   },
   "files": {
-    "ignoreUnknown": true,
-    "include": [
-      "*.js",
-      "*.json",
-      "*.ts",
-      "*.tsx",
-      "*.jsx"
-    ],
-    "ignore": [
-      "dist/**/*",
-      "node_modules/**/*"
-    ]
+    "ignoreUnknown": true
   }
 }
