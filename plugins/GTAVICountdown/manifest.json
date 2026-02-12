@@ -7,8 +7,5 @@
             "id": "646535537334812682"
         }
     ],
-    "main": "src/index.tsx",
-    "vendetta": {
-        "icon": "ClockIcon"
-    }
+    "main": "src/index.tsx"
 }
