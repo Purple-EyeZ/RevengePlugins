@@ -1,1 +1,1 @@
-{"name":"Crash Command","description":"Adds /crash command to trigger a native client crash.","authors":[{"name":"Purple_Ξye™","id":"646535537334812682"}],"main":"index.js","vendetta":{"icon":"CircleErrorIcon"},"hash":"a46c9848559450c428ce5746ff3ac071de61f6afe281901fad927cf845cda710"}
+{"name":"Crash Command","description":"Adds /crash command to trigger a native client crash.","authors":[{"name":"Purple_Ξye™","id":"646535537334812682"}],"main":"index.js","vendetta":{"icon":"CircleErrorIcon"},"hash":"0e0e315471c80613685800e8b598efb18c5e1ec9634e2159613e3835fd4efe4e"}
