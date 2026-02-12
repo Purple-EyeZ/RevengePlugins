@@ -9,7 +9,11 @@
         "allowJs": true,
         "skipLibCheck": true,
         "resolveJsonModule": true,
-        "strict": true
+        "strict": true,
+        "baseUrl": ".",
+        "paths": {
+            "@lib/*": ["lib/*"]
+        }
     },
     "include": ["plugins", "types/**/*.d.ts", "node_modules/vendetta-types"]
 }

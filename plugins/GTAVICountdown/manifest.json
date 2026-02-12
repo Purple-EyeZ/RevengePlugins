@@ -1,0 +1,14 @@
+{
+    "name": "🇺🇸 GTA VI Countdown",
+    "description": "Counting down until you reach heaven.",
+    "authors": [
+        {
+            "name": "Purple_Ξye™",
+            "id": "646535537334812682"
+        }
+    ],
+    "main": "src/index.tsx",
+    "vendetta": {
+        "icon": "ClockIcon"
+    }
+}
