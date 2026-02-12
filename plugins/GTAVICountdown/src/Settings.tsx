@@ -1,10 +1,10 @@
-import { useProxy } from '@vendetta/storage'
-import { storage } from '@vendetta/plugin'
-import { components, ReactNative, type React } from '@revenge-mod/metro/common'
-import { getAssetIDByName } from '@vendetta/ui/assets'
-import { showCountdownToast, FREQUENCIES, IMAGE_URL, ROCKSTAR_VI_URL } from './index'
 import Text from '@lib/components/Text'
 import { findRedesignComponent } from '@lib/types'
+import { components, type React, ReactNative } from '@revenge-mod/metro/common'
+import { storage } from '@vendetta/plugin'
+import { useProxy } from '@vendetta/storage'
+import { getAssetIDByName } from '@vendetta/ui/assets'
+import { FREQUENCIES, IMAGE_URL, ROCKSTAR_VI_URL, showCountdownToast } from './index'
 
 type ButtonType = typeof components.Button
 type TableRadioRowType = typeof components.TableRadioRow

@@ -1,6 +1,6 @@
-import { storage } from '@vendetta/plugin'
 import { findByProps } from '@revenge-mod/metro'
 import { FluxDispatcher, ReactNative } from '@revenge-mod/metro/common'
+import { storage } from '@vendetta/plugin'
 import CountdownToast from './components/CountdownToast'
 import Settings from './Settings'
 

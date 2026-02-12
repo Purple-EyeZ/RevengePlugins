@@ -1,14 +1,14 @@
 {
-	"name": "Crash Command",
-	"description": "Adds /crash command to trigger a native client crash.",
-	"authors": [
-		{
-			"name": "Purple_Ξye™",
-			"id": "646535537334812682"
-		}
-	],
-	"main": "src/index.ts",
-	"vendetta": {
-		"icon": "CircleErrorIcon"
-	}
+    "name": "Crash Command",
+    "description": "Adds /crash command to trigger a native client crash.",
+    "authors": [
+        {
+            "name": "Purple_Ξye™",
+            "id": "646535537334812682"
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "CircleErrorIcon"
+    }
 }

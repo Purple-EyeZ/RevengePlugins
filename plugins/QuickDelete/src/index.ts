@@ -52,10 +52,7 @@ export default {
                 const matcher = autoConfirmMessages[type]
                 if (!matcher) return false
 
-                return (
-                    storage[KEYS[type].storage] &&
-                    (title?.includes(matcher) || body?.includes(matcher))
-                )
+                return storage[KEYS[type].storage] && (title?.includes(matcher) || body?.includes(matcher))
             }
 
             return shouldConfirm('message') || shouldConfirm('embed') ? popup.onConfirm() : fn(...args)

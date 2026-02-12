@@ -1,7 +1,7 @@
+import { components, ReactNative } from '@revenge-mod/metro/common'
+import { storage } from '@vendetta/plugin'
 import { useProxy } from '@vendetta/storage'
 import { getAssetIDByName } from '@vendetta/ui/assets'
-import { storage } from '@vendetta/plugin'
-import { components, ReactNative } from '@revenge-mod/metro/common'
 
 const { TableRowGroup, TableSwitchRow, TableRowIcon, Stack } = components
 const { ScrollView } = ReactNative

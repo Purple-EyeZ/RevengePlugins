@@ -1,18 +1,18 @@
 {
-	"name": "Quick Delete",
-	"description": "Remove confirmation when deleting a message or an embed.",
-	"authors": [
-		{
-			"name": "The Sun ",
-			"id": "406028027768733696"
-		},
-		{
-			"name": "Purple_Ξye™",
-			"id": "646535537334812682"
-		}
-	],
-	"main": "src/index.ts",
-	"vendetta": {
-		"icon": "ic_trash_24px"
-	}
+    "name": "Quick Delete",
+    "description": "Remove confirmation when deleting a message or an embed.",
+    "authors": [
+        {
+            "name": "The Sun ",
+            "id": "406028027768733696"
+        },
+        {
+            "name": "Purple_Ξye™",
+            "id": "646535537334812682"
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "ic_trash_24px"
+    }
 }

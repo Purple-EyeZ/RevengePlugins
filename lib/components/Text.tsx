@@ -2,7 +2,7 @@ import { findByProps } from '@revenge-mod/metro'
 import { type React, ReactNative as RN } from '@revenge-mod/metro/common'
 import { semanticColors } from '@vendetta/ui'
 import type { TextProps } from 'react-native'
-import { resolveSemanticColor, type TextStyleSheetVariant, type _TextStyleSheet } from '../types'
+import { type _TextStyleSheet, resolveSemanticColor, type TextStyleSheetVariant } from '../types'
 
 export const TextStyleSheet = findByProps('TextStyleSheet')?.TextStyleSheet as _TextStyleSheet
 
