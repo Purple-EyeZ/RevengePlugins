@@ -1,0 +1,18 @@
+{
+    "name": "Text Replace",
+    "description": "Generic text replacement plugin",
+    "authors": [
+        {
+            "name": "Fiery",
+            "id": "890228870559698955"
+        },
+        {
+            "name": "Purple_Ξye™",
+            "id": "646535537334812682"
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "PencilIcon"
+    }
+}
