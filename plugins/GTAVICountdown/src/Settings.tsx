@@ -4,9 +4,8 @@ import { components, type React, ReactNative } from '@revenge-mod/metro/common'
 import { storage } from '@vendetta/plugin'
 import { useProxy } from '@vendetta/storage'
 import { getAssetIDByName } from '@vendetta/ui/assets'
-import { FREQUENCIES, IMAGE_URL, ROCKSTAR_VI_URL, showCountdownToast } from './index'
+import { FREQUENCIES, IMAGE_URL, previewAnnouncements, ROCKSTAR_VI_URL, showCountdownToast } from './index'
 
-type ButtonType = typeof components.Button
 type TableRadioRowType = typeof components.TableRadioRow
 interface TableRadioGroupProps {
     title?: string
@@ -17,12 +16,11 @@ interface TableRadioGroupProps {
     children?: React.ReactNode
 }
 
-const Button = findRedesignComponent('Button') as ButtonType
 const RawSlider = findRedesignComponent('Slider')
 const TableRadioGroup = findRedesignComponent('TableRadioGroup') as React.FC<TableRadioGroupProps>
 const TableRadioRow = findRedesignComponent('TableRadioRow') as TableRadioRowType
 
-const { TableRowGroup, Stack, TableRow } = components
+const { TableRowGroup, TableSwitchRow, Stack, TableRow } = components
 const { ScrollView, View, TouchableOpacity, Image, StyleSheet, Linking } = ReactNative
 
 const Slider = (props: any) => (
@@ -69,7 +67,7 @@ export default function Settings() {
                 <HeroBanner />
 
                 <TableRadioGroup
-                    title="Frequency"
+                    title="Countdown Frequency"
                     defaultValue={storage.frequency}
                     onChange={(v: string) => (storage.frequency = v)}
                 >
@@ -83,7 +81,7 @@ export default function Settings() {
                     ))}
                 </TableRadioGroup>
 
-                <TableRowGroup title="Behavior">
+                <TableRowGroup title="Countdown Behavior">
                     <TableRow
                         label="Toast Duration"
                         subLabel={
@@ -105,23 +103,41 @@ export default function Settings() {
                                 />
                             </View>
                         }
-                        onPress={() => {}}
-                        arrow={false}
+                        icon={<TableRow.Icon source={getAssetIDByName('ClockIcon')} />}
+                    />
+                    <TableRow
+                        label="Preview Countdown"
+                        subLabel="Preview the GTA VI countdown toast"
+                        icon={<TableRow.Icon source={getAssetIDByName('EyeIcon')} />}
+                        onPress={() => showCountdownToast()}
+                        arrow
                     />
                 </TableRowGroup>
 
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="Preview Toast"
-                            variant="primary"
-                            size="md"
-                            onPress={() => showCountdownToast()}
-                            icon={getAssetIDByName('EyeIcon')}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
+                <TableRowGroup title="Announcements">
+                    <TableSwitchRow
+                        label="Enable Announcements"
+                        subLabel="New GTA VI announcements will be shown once on startup"
+                        icon={<TableRow.Icon source={getAssetIDByName('AnnouncementsIcon')} />}
+                        value={storage.enableAnnouncements}
+                        onValueChange={v => (storage.enableAnnouncements = v)}
+                    />
+                    <TableRow
+                        label="View Latest Announcement"
+                        subLabel="View the latest GTA VI announcement"
+                        icon={<TableRow.Icon source={getAssetIDByName('AnnouncementsSpoilerIcon')} />}
+                        onPress={() => previewAnnouncements()}
+                        arrow
+                    />
+                </TableRowGroup>
+                {/* @ts-expect-error */}
+                <TableRowGroup>
+                    <TableRow
+                        label="About GTA VI Announcements"
+                        subLabel="Announcements include GTA VI news, such as trailer releases, pre-order launches, and more. These are official Rockstar Games announcements only."
+                        icon={<TableRow.Icon source={getAssetIDByName('CircleInformationIcon')} />}
+                    />
+                </TableRowGroup>
             </Stack>
         </ScrollView>
     )
