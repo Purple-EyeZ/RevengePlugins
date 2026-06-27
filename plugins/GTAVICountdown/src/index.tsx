@@ -1,5 +1,6 @@
 import { findByProps } from '@revenge-mod/metro'
 import { FluxDispatcher, ReactNative } from '@revenge-mod/metro/common'
+import { logger } from '@vendetta'
 import { storage } from '@vendetta/plugin'
 import CountdownToast from './components/CountdownToast'
 import Settings from './Settings'
@@ -37,23 +38,27 @@ export const getDaysUntilRelease = () => {
 }
 
 export const showCountdownToast = async () => {
-    const days = getDaysUntilRelease()
-    const durationSec = Number(storage.displayDuration) || DEFAULT_DURATION
+    try {
+        const days = getDaysUntilRelease()
+        const durationSec = Number(storage.displayDuration) || DEFAULT_DURATION
 
-    await Image.prefetch(LOGO_URL).catch(() => null)
+        await Image.prefetch(LOGO_URL).catch(() => null)
 
-    if (Toasts) {
-        Toasts.open({
-            key: `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
-            content: <CountdownToast days={days} />,
-            containerStyle: {
-                backgroundColor: 'transparent',
-                borderColor: 'transparent',
-                shadowColor: 'transparent',
-                elevation: 0,
-            },
-            toastDurationMs: durationSec * 1000,
-        })
+        if (Toasts) {
+            Toasts.open({
+                key: `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
+                content: <CountdownToast days={days} />,
+                containerStyle: {
+                    backgroundColor: 'transparent',
+                    borderColor: 'transparent',
+                    shadowColor: 'transparent',
+                    elevation: 0,
+                },
+                toastDurationMs: durationSec * 1000,
+            })
+        }
+    } catch (error) {
+        logger.error('Failed to show countdown toast:', error)
     }
 }
 
