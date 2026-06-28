@@ -49,7 +49,7 @@ export const showCountdownToast = async () => {
                 // backgroundColor: 'transparent',
                 // borderColor: 'transparent',
                 // shadowColor: 'transparent',
-                elevation: 0,
+                // elevation: 0,
             },
             toastDurationMs: 3000,
         })
@@ -62,7 +62,7 @@ export const showCountdownToast = async () => {
 
 export default {
     onLoad: () => {
-        logger.info('Plugin loaded')
+        logger.info('Plugin loaded (v2)')
     },
     onUnload: () => {
         logger.info('Plugin unloaded')
