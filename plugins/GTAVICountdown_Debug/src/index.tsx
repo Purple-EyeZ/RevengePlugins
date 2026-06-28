@@ -44,13 +44,13 @@ export const showCountdownToast = async () => {
 
         Toasts.open({
             key: toastKey,
-            content: `${days} days until GTA VI!`,
-            containerStyle: {
-                // backgroundColor: 'transparent',
-                // borderColor: 'transparent',
-                // shadowColor: 'transparent',
-                // elevation: 0,
-            },
+            content: <CountdownToast days={days} />,
+            // containerStyle: {
+            // backgroundColor: 'transparent',
+            // borderColor: 'transparent',
+            // shadowColor: 'transparent',
+            // elevation: 0,
+            // },
             toastDurationMs: 3000,
         })
 
@@ -62,7 +62,7 @@ export const showCountdownToast = async () => {
 
 export default {
     onLoad: () => {
-        logger.info('Plugin loaded (v2)')
+        logger.info('Plugin loaded (v3)')
     },
     onUnload: () => {
         logger.info('Plugin unloaded')
