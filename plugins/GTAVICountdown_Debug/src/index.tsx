@@ -44,11 +44,11 @@ export const showCountdownToast = async () => {
 
         Toasts.open({
             key: toastKey,
-            content: <CountdownToast days={days} />,
+            content: `${days} days until GTA VI!`,
             containerStyle: {
-                backgroundColor: 'transparent',
-                borderColor: 'transparent',
-                shadowColor: 'transparent',
+                // backgroundColor: 'transparent',
+                // borderColor: 'transparent',
+                // shadowColor: 'transparent',
                 elevation: 0,
             },
             toastDurationMs: 3000,
