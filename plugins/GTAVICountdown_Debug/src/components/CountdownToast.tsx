@@ -1,8 +1,11 @@
+import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
 import { LOGO_URL } from '../index'
 
 const { View, Text, Image, StyleSheet } = ReactNative
+
+const LinearGradient = findByProps('LinearGradient')?.default
 
 const Colors = {
     primary: '#E146C6',
@@ -16,10 +19,9 @@ interface CountdownToastProps {
 }
 
 const styles = StyleSheet.create({
-    fallbackBorder: {
+    gradientBorder: {
         borderRadius: 8,
         padding: 1,
-        backgroundColor: Colors.primary,
     },
     container: {
         flexDirection: 'row',
@@ -80,10 +82,20 @@ const styles = StyleSheet.create({
 })
 
 export default function CountdownToast({ days }: CountdownToastProps) {
-    logger.info('CountdownToast component rendering triggered!')
+    logger.info('[GTA VI DEBUG] Original CountdownToast rendering triggered!')
+
+    if (!LinearGradient) {
+        logger.error('[GTA VI DEBUG] LinearGradient is missing bro')
+        return <Text style={{ color: 'red', backgroundColor: 'black', padding: 5 }}>LinearGradient Missing</Text>
+    }
 
     return (
-        <View style={styles.fallbackBorder}>
+        <LinearGradient
+            colors={[Colors.primary, Colors.secondary]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={styles.gradientBorder}
+        >
             <View style={styles.container}>
                 <Image source={{ uri: LOGO_URL }} style={styles.logo} />
 
@@ -100,6 +112,6 @@ export default function CountdownToast({ days }: CountdownToastProps) {
                     <Text style={styles.footerText}>Coming 19th Nov 2026</Text>
                 </View>
             </View>
-        </View>
+        </LinearGradient>
     )
 }

@@ -2,14 +2,7 @@ import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
 import CountdownToast from './components/CountdownToast'
-import {
-    ToastV0_Base,
-    ToastV1_NoImage,
-    ToastV2_NoHex8,
-    ToastV3_NoShadows,
-    ToastV4_NoFlex,
-    ToastV5_BasicBorder,
-} from './components/TestToasts'
+import { ToastV0_Base } from './components/TestToasts'
 import Settings from './Settings'
 
 const { Image } = ReactNative as any
@@ -27,6 +20,26 @@ export const getDaysUntilRelease = () => {
     const now = new Date()
     const difference = TARGET_DATE.getTime() - now.getTime()
     return Math.ceil(difference / (1000 * 60 * 60 * 24))
+}
+
+export const showOriginalToast = () => {
+    const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
+    const days = getDaysUntilRelease()
+    Toasts.open({
+        key: toastKey,
+        content: <CountdownToast days={days} />,
+        toastDurationMs: 3000,
+    })
+}
+
+export const showV0Toast = () => {
+    const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
+    const days = getDaysUntilRelease()
+    Toasts.open({
+        key: toastKey,
+        content: <ToastV0_Base days={days} />,
+        toastDurationMs: 3000,
+    })
 }
 
 export const showCountdownToast = async () => {
@@ -67,22 +80,6 @@ export const showCountdownToast = async () => {
         logger.error('Failed to show countdown toast:', error)
     }
 }
-
-const triggerToast = (ComponentParams: any, name: string) => {
-    const days = getDaysUntilRelease()
-    Toasts.open({
-        key: `gta-${name}-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
-        content: ComponentParams(days),
-        toastDurationMs: 3000,
-    })
-}
-
-export const testVariantA = () => triggerToast((d: number) => <ToastV0_Base days={d} />, 'vA')
-export const testVariantB = () => triggerToast((d: number) => <ToastV1_NoImage days={d} />, 'vB')
-export const testVariantC = () => triggerToast((d: number) => <ToastV2_NoHex8 days={d} />, 'vC')
-export const testVariantD = () => triggerToast((d: number) => <ToastV3_NoShadows days={d} />, 'vD')
-export const testVariantE = () => triggerToast((d: number) => <ToastV4_NoFlex days={d} />, 'vE')
-export const testVariantF = () => triggerToast((d: number) => <ToastV5_BasicBorder days={d} />, 'vF')
 
 export default {
     onLoad: () => {

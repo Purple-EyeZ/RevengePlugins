@@ -1,7 +1,7 @@
 import { findRedesignComponent } from '@lib/types'
 import { components, ReactNative } from '@revenge-mod/metro/common'
 import { getAssetIDByName } from '@vendetta/ui/assets'
-import { testVariantA, testVariantB, testVariantC, testVariantD, testVariantE, testVariantF } from './index'
+import { showOriginalToast, showV0Toast } from './index'
 
 type ButtonType = typeof components.Button
 
@@ -16,10 +16,11 @@ export default function Settings() {
                 <View style={{ paddingHorizontal: 0 }}>
                     {Button && (
                         <Button
-                            text="(0) ToastV0_Base"
+                            text="Test ORIGINAL (LinearGradient)"
                             variant="primary"
                             size="md"
-                            onPress={() => testVariantA()}
+                            onPress={() => showOriginalToast()}
+                            icon={getAssetIDByName('EyeIcon')}
                             iconPosition="start"
                         />
                     )}
@@ -28,58 +29,10 @@ export default function Settings() {
                 <View style={{ paddingHorizontal: 0 }}>
                     {Button && (
                         <Button
-                            text="(1) ToastV1_NoImage"
+                            text="Test V0 (Fallback Border)"
                             variant="secondary"
                             size="md"
-                            onPress={() => testVariantB()}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
-
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="(2) ToastV2_NoHex8"
-                            variant="secondary"
-                            size="md"
-                            onPress={() => testVariantC()}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
-
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="(3) ToastV3_NoShadows"
-                            variant="secondary"
-                            size="md"
-                            onPress={() => testVariantD()}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
-
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="(4) ToastV4_NoFlex"
-                            variant="secondary"
-                            size="md"
-                            onPress={() => testVariantE()}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
-
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="(5) ToastV5_BasicBorder"
-                            variant="secondary"
-                            size="md"
-                            onPress={() => testVariantF()}
+                            onPress={() => showV0Toast()}
                             iconPosition="start"
                         />
                     )}
