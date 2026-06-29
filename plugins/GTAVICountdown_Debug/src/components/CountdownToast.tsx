@@ -1,3 +1,4 @@
+/*
 import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
@@ -115,3 +116,4 @@ export default function CountdownToast({ days }: CountdownToastProps) {
         </LinearGradient>
     )
 }
+*/

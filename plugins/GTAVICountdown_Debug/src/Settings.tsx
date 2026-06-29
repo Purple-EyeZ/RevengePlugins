@@ -1,7 +1,7 @@
 import { findRedesignComponent } from '@lib/types'
 import { components, ReactNative } from '@revenge-mod/metro/common'
-import { getAssetIDByName } from '@vendetta/ui/assets'
-import { showOriginalToast, showV0Toast } from './index'
+// import { getAssetIDByName } from '@vendetta/ui/assets'
+import { showV0Toast } from './index'
 
 type ButtonType = typeof components.Button
 
@@ -13,19 +13,6 @@ export default function Settings() {
     return (
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
             <Stack style={{ paddingVertical: 24, paddingHorizontal: 16 }} spacing={24}>
-                <View style={{ paddingHorizontal: 0 }}>
-                    {Button && (
-                        <Button
-                            text="Test ORIGINAL (LinearGradient)"
-                            variant="primary"
-                            size="md"
-                            onPress={() => showOriginalToast()}
-                            icon={getAssetIDByName('EyeIcon')}
-                            iconPosition="start"
-                        />
-                    )}
-                </View>
-
                 <View style={{ paddingHorizontal: 0 }}>
                     {Button && (
                         <Button

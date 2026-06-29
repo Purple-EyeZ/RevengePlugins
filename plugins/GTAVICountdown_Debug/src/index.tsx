@@ -1,11 +1,11 @@
 import { findByProps } from '@revenge-mod/metro'
-import { ReactNative } from '@revenge-mod/metro/common'
+// import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
-import CountdownToast from './components/CountdownToast'
+// import CountdownToast from './components/CountdownToast'
 import { ToastV0_Base } from './components/TestToasts'
 import Settings from './Settings'
 
-const { Image } = ReactNative as any
+// const { Image } = ReactNative as any
 
 const Toasts = findByProps('open', 'close')
 const UuidModule = findByProps('uuid4')
@@ -21,7 +21,7 @@ export const getDaysUntilRelease = () => {
     const difference = TARGET_DATE.getTime() - now.getTime()
     return Math.ceil(difference / (1000 * 60 * 60 * 24))
 }
-
+/* 
 export const showOriginalToast = () => {
     const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
     const days = getDaysUntilRelease()
@@ -31,7 +31,7 @@ export const showOriginalToast = () => {
         toastDurationMs: 3000,
     })
 }
-
+*/
 export const showV0Toast = () => {
     const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
     const days = getDaysUntilRelease()
@@ -41,7 +41,7 @@ export const showV0Toast = () => {
         toastDurationMs: 3000,
     })
 }
-
+/*
 export const showCountdownToast = async () => {
     logger.info('showCountdownToast called')
 
@@ -80,7 +80,7 @@ export const showCountdownToast = async () => {
         logger.error('Failed to show countdown toast:', error)
     }
 }
-
+*/
 export default {
     onLoad: () => {
         logger.info('Plugin loaded (v4)')

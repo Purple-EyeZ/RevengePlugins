@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000e6',
         borderRadius: 7,
         padding: 8,
-        minWidth: 200,
+        // minWidth: 200,
     },
     logo: {
         width: 60,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: '900',
         textShadowColor: 'rgba(255, 0, 255, 0.7)',
-        textShadowOffset: { width: 0, height: 0 },
+        // textShadowOffset: { width: 0, height: 0 },
         textShadowRadius: 12,
         marginRight: 4,
     },
