@@ -2,6 +2,14 @@ import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
 import CountdownToast from './components/CountdownToast'
+import {
+    ToastV0_Base,
+    ToastV1_NoImage,
+    ToastV2_NoHex8,
+    ToastV3_NoShadows,
+    ToastV4_NoFlex,
+    ToastV5_BasicBorder,
+} from './components/TestToasts'
 import Settings from './Settings'
 
 const { Image } = ReactNative as any
@@ -60,60 +68,21 @@ export const showCountdownToast = async () => {
     }
 }
 
-export const showSimpleToast = () => {
-    logger.info('showSimpleToast called')
-
-    try {
-        if (!Toasts) {
-            logger.error('Toasts module not found!')
-            return
-        }
-
-        const days = getDaysUntilRelease()
-        const toastKey = `gta-toast-simple-${UuidModule ? UuidModule.uuid4() : Math.random()}`
-
-        Toasts.open({
-            key: toastKey,
-            content: `🇺🇸 GTA VI in ${days} days!!`,
-            toastDurationMs: 3000,
-        })
-
-        logger.info(`Simple Toast opened successfully with key: ${toastKey}`)
-    } catch (error) {
-        logger.error('Failed to show simple toast:', error)
-    }
+const triggerToast = (ComponentParams: any, name: string) => {
+    const days = getDaysUntilRelease()
+    Toasts.open({
+        key: `gta-${name}-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
+        content: ComponentParams(days),
+        toastDurationMs: 3000,
+    })
 }
 
-export const showMinimalComponentToast = () => {
-    logger.info('showMinimalComponentToast called')
-
-    try {
-        if (!Toasts) {
-            logger.error('Toasts module not found!')
-            return
-        }
-
-        const TextComponent = ReactNative.Text
-        const ViewComponent = ReactNative.View
-        const toastKey = `gta-toast-min-${UuidModule ? UuidModule.uuid4() : Math.random()}`
-
-        Toasts.open({
-            key: toastKey,
-            content: (
-                <ViewComponent style={{ backgroundColor: '#14acc0', padding: 10, borderRadius: 5 }}>
-                    <TextComponent style={{ color: 'white', fontWeight: 'bold' }}>
-                        MINIMAL REACT COMPONENT TEST
-                    </TextComponent>
-                </ViewComponent>
-            ),
-            toastDurationMs: 3000,
-        })
-
-        logger.info(`Minimal Component Toast opened successfully with key: ${toastKey}`)
-    } catch (error) {
-        logger.error('Failed to show minimal component toast:', error)
-    }
-}
+export const testVariantA = () => triggerToast((d: number) => <ToastV0_Base days={d} />, 'vA')
+export const testVariantB = () => triggerToast((d: number) => <ToastV1_NoImage days={d} />, 'vB')
+export const testVariantC = () => triggerToast((d: number) => <ToastV2_NoHex8 days={d} />, 'vC')
+export const testVariantD = () => triggerToast((d: number) => <ToastV3_NoShadows days={d} />, 'vD')
+export const testVariantE = () => triggerToast((d: number) => <ToastV4_NoFlex days={d} />, 'vE')
+export const testVariantF = () => triggerToast((d: number) => <ToastV5_BasicBorder days={d} />, 'vF')
 
 export default {
     onLoad: () => {
