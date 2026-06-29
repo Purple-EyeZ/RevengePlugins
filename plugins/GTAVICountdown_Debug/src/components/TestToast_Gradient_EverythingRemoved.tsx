@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000e6',
         borderRadius: 7,
         padding: 8,
-        // minWidth: 200,
     },
     logo: {
         width: 60,
@@ -40,7 +39,7 @@ const styles = StyleSheet.create({
         height: '80%',
         backgroundColor: Colors.secondary,
         marginHorizontal: 10,
-        // opacity: 0.6,
+        opacity: 0.6,
     },
     textContainer: {
         flexDirection: 'column',
@@ -48,9 +47,10 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: Colors.white,
-        fontSize: 10,
-        fontWeight: 'bold',
-        // opacity: 0.8,
+        fontSize: 12,
+        fontWeight: 'medium',
+        opacity: 0.8,
+        // letterSpacing causes an issue where the toast doesn't appear on some devices
         // letterSpacing: 1,
     },
     countdownRow: {
@@ -63,7 +63,6 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: '900',
         textShadowColor: 'rgba(255, 0, 255, 0.7)',
-        // textShadowOffset: { width: 0, height: 0 },
         textShadowRadius: 12,
         marginRight: 4,
     },
