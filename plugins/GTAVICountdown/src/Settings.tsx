@@ -4,7 +4,8 @@ import { components, type React, ReactNative } from '@revenge-mod/metro/common'
 import { storage } from '@vendetta/plugin'
 import { useProxy } from '@vendetta/storage'
 import { getAssetIDByName } from '@vendetta/ui/assets'
-import { FREQUENCIES, IMAGE_URL, ROCKSTAR_VI_URL, showCountdownToast } from './index'
+import { FREQUENCIES, IMAGE_URL, ROCKSTAR_VI_URL } from './constants'
+import { showCountdownToast } from './utils'
 
 type ButtonType = typeof components.Button
 type TableRadioRowType = typeof components.TableRadioRow

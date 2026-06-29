@@ -1,6 +1,6 @@
 import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
-import { LOGO_URL } from '../index'
+import { LOGO_URL } from '../constants'
 
 const { View, Text, Image, StyleSheet } = ReactNative
 

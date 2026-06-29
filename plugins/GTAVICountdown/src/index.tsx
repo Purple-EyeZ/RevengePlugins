@@ -1,64 +1,22 @@
 import { findByProps } from '@revenge-mod/metro'
-import { FluxDispatcher, ReactNative } from '@revenge-mod/metro/common'
-import { logger } from '@vendetta'
+import { FluxDispatcher } from '@revenge-mod/metro/common'
 import { storage } from '@vendetta/plugin'
-import CountdownToast from './components/CountdownToast'
+import { DEFAULT_DURATION, DEFAULT_FREQUENCY, TARGET_DATE } from './constants'
 import Settings from './Settings'
+import { showCountdownToast } from './utils'
 
-const { Image } = ReactNative as any
-const Toasts = findByProps('open', 'close')
-const UuidModule = findByProps('uuid4')
 const ConnectionStore = findByProps('isConnected', 'isDisconnected')
 
-const TARGET_DATE = new Date('2026-11-19T00:00:00')
-
-export const LOGO_URL = 'https://i.imgur.com/x91idXI.png'
-export const IMAGE_URL = 'https://i.imgur.com/M5K8i6m.jpeg'
-export const ROCKSTAR_VI_URL = 'https://www.rockstargames.com/VI'
-
-const DEFAULT_DURATION = 3
-const DEFAULT_FREQUENCY = 'daily'
 const ONE_HOUR = 60 * 60 * 1000
 const ONE_DAY = 24 * ONE_HOUR
 
 storage.displayDuration ??= DEFAULT_DURATION
 storage.frequency ??= DEFAULT_FREQUENCY
 
-export const FREQUENCIES = [
-    { label: 'Always on Startup', value: 'startup', description: 'Shows every time you open the app.' },
-    { label: 'Every Hour', value: 'hourly', description: 'Shows at most once per hour.' },
-    { label: 'Daily', value: 'daily', description: 'Shows once every 24 hours.' },
-    { label: 'Weekly', value: 'weekly', description: 'Shows once every 7 days.' },
-]
-
 export const getDaysUntilRelease = () => {
     const now = new Date()
     const difference = TARGET_DATE.getTime() - now.getTime()
     return Math.ceil(difference / (1000 * 60 * 60 * 24))
-}
-
-export const showCountdownToast = async () => {
-    try {
-        const days = getDaysUntilRelease()
-        const durationSec = Number(storage.displayDuration) || DEFAULT_DURATION
-
-        await Image.prefetch(LOGO_URL).catch(() => null)
-
-        if (Toasts) {
-            Toasts.open({
-                key: `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
-                content: <CountdownToast days={days} />,
-                containerStyle: {
-                    backgroundColor: 'transparent',
-                    borderColor: 'transparent',
-                    shadowColor: 'transparent',
-                },
-                toastDurationMs: durationSec * 1000,
-            })
-        }
-    } catch (error) {
-        logger.error('Failed to show countdown toast:', error)
-    }
 }
 
 const checkAndShowToast = () => {
