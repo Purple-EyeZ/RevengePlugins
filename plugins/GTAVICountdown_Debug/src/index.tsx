@@ -60,9 +60,64 @@ export const showCountdownToast = async () => {
     }
 }
 
+export const showSimpleToast = () => {
+    logger.info('showSimpleToast called')
+
+    try {
+        if (!Toasts) {
+            logger.error('Toasts module not found!')
+            return
+        }
+
+        const days = getDaysUntilRelease()
+        const toastKey = `gta-toast-simple-${UuidModule ? UuidModule.uuid4() : Math.random()}`
+
+        Toasts.open({
+            key: toastKey,
+            content: `🇺🇸 GTA VI in ${days} days!!`,
+            toastDurationMs: 3000,
+        })
+
+        logger.info(`Simple Toast opened successfully with key: ${toastKey}`)
+    } catch (error) {
+        logger.error('Failed to show simple toast:', error)
+    }
+}
+
+export const showMinimalComponentToast = () => {
+    logger.info('showMinimalComponentToast called')
+
+    try {
+        if (!Toasts) {
+            logger.error('Toasts module not found!')
+            return
+        }
+
+        const TextComponent = ReactNative.Text
+        const ViewComponent = ReactNative.View
+        const toastKey = `gta-toast-min-${UuidModule ? UuidModule.uuid4() : Math.random()}`
+
+        Toasts.open({
+            key: toastKey,
+            content: (
+                <ViewComponent style={{ backgroundColor: '#14acc0', padding: 10, borderRadius: 5 }}>
+                    <TextComponent style={{ color: 'white', fontWeight: 'bold' }}>
+                        MINIMAL REACT COMPONENT TEST
+                    </TextComponent>
+                </ViewComponent>
+            ),
+            toastDurationMs: 3000,
+        })
+
+        logger.info(`Minimal Component Toast opened successfully with key: ${toastKey}`)
+    } catch (error) {
+        logger.error('Failed to show minimal component toast:', error)
+    }
+}
+
 export default {
     onLoad: () => {
-        logger.info('Plugin loaded (v3)')
+        logger.info('Plugin loaded (v4)')
     },
     onUnload: () => {
         logger.info('Plugin unloaded')
