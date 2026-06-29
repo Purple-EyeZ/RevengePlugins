@@ -1,7 +1,10 @@
+import { findByProps } from '@revenge-mod/metro'
 import { ReactNative } from '@revenge-mod/metro/common'
 import { LOGO_URL } from '../index'
 
 const { View, Text, Image, StyleSheet } = ReactNative
+
+const LinearGradient = findByProps('LinearGradient')?.default
 
 const Colors = {
     primary: '#E146C6',
@@ -10,15 +13,14 @@ const Colors = {
     lightGray: '#aaaaaa',
 }
 
-interface FallbackToastProps {
+interface CountdownToastProps {
     days: number
 }
 
 const styles = StyleSheet.create({
-    fakeBorder: {
+    gradientBorder: {
         borderRadius: 8,
         padding: 1,
-        backgroundColor: Colors.primary,
     },
     container: {
         flexDirection: 'row',
@@ -78,9 +80,16 @@ const styles = StyleSheet.create({
     },
 })
 
-export const ToastTest_AllRemoved = ({ days }: FallbackToastProps) => {
+export const ToastTest_AllRemoved_Gradient = ({ days }: CountdownToastProps) => {
+    if (!LinearGradient) return null
+
     return (
-        <View style={styles.fakeBorder}>
+        <LinearGradient
+            colors={[Colors.primary, Colors.secondary]}
+            start={{ x: 0, y: 0.5 }}
+            end={{ x: 1, y: 0.5 }}
+            style={styles.gradientBorder}
+        >
             <View style={styles.container}>
                 <Image source={{ uri: LOGO_URL }} style={styles.logo} />
 
@@ -97,6 +106,6 @@ export const ToastTest_AllRemoved = ({ days }: FallbackToastProps) => {
                     <Text style={styles.footerText}>Coming 19th Nov 2026</Text>
                 </View>
             </View>
-        </View>
+        </LinearGradient>
     )
 }

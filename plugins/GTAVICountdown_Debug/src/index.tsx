@@ -1,17 +1,22 @@
 import { findByProps } from '@revenge-mod/metro'
-// import { ReactNative } from '@revenge-mod/metro/common'
+import { ReactNative } from '@revenge-mod/metro/common'
 import { logger } from '@vendetta'
 // import CountdownToast from './components/CountdownToast'
-import { ToastV0_Base } from './components/TestToasts'
-import Settings from './Settings'
+import { ToastTest_Full } from './components/TestToast_Full'
+import { ToastTest_AllRemoved } from './components/TestToasts'
+import { ToastTest_LetterSpacing } from './components/TestToast_WithLetterSpacing'
+import { ToastTest_MinWidth } from './components/TestToast_WithMinWidth'
+import { ToastTest_Opacity } from './components/TestToast_WithOpacity'
+import { ToastTest_ShadowOffset } from './components/TestToast_WithShadowOffset'
+import { ToastTest_AllRemoved_Gradient } from './components/TestToast_Gradient_EverythingRemoved'
 
-// const { Image } = ReactNative as any
+import Settings from './Settings'
 
 const Toasts = findByProps('open', 'close')
 const UuidModule = findByProps('uuid4')
+const { Image } = ReactNative as any
 
 const TARGET_DATE = new Date('2026-11-19T00:00:00')
-
 export const LOGO_URL = 'https://i.imgur.com/x91idXI.png'
 export const IMAGE_URL = 'https://i.imgur.com/M5K8i6m.jpeg'
 export const ROCKSTAR_VI_URL = 'https://www.rockstargames.com/VI'
@@ -21,69 +26,34 @@ export const getDaysUntilRelease = () => {
     const difference = TARGET_DATE.getTime() - now.getTime()
     return Math.ceil(difference / (1000 * 60 * 60 * 24))
 }
-/* 
-export const showOriginalToast = () => {
-    const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
+
+const triggerToast = (ComponentParams: any, name: string) => {
     const days = getDaysUntilRelease()
     Toasts.open({
-        key: toastKey,
-        content: <CountdownToast days={days} />,
+        key: `gta-${name}-${UuidModule ? UuidModule.uuid4() : Math.random()}`,
+        content: ComponentParams(days),
         toastDurationMs: 3000,
     })
 }
-*/
-export const showV0Toast = () => {
-    const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
-    const days = getDaysUntilRelease()
-    Toasts.open({
-        key: toastKey,
-        content: <ToastV0_Base days={days} />,
-        toastDurationMs: 3000,
-    })
+
+export const testOriginal = async () => {
+    logger.info('Test Original with Image Prefetch called')
+    await Image.prefetch(LOGO_URL).catch(() => null)
+    triggerToast((d: number) => <ToastTest_Full days={d} />, 'original')
 }
-/*
-export const showCountdownToast = async () => {
-    logger.info('showCountdownToast called')
 
-    try {
-        const days = getDaysUntilRelease()
-        logger.info(`Days until release: ${days}`)
+export const testAllRemoved = () => triggerToast((d: number) => <ToastTest_AllRemoved days={d} />, 'all-removed')
+export const testMinWidth = () => triggerToast((d: number) => <ToastTest_MinWidth days={d} />, 'min-width')
+export const testOpacity = () => triggerToast((d: number) => <ToastTest_Opacity days={d} />, 'opacity')
+export const testLetterSpacing = () =>
+    triggerToast((d: number) => <ToastTest_LetterSpacing days={d} />, 'letter-spacing')
+export const testShadowOffset = () => triggerToast((d: number) => <ToastTest_ShadowOffset days={d} />, 'shadow-offset')
+export const testAllRemovedGradient = () =>
+    triggerToast((d: number) => <ToastTest_AllRemoved_Gradient days={d} />, 'all-removed-gradient')
 
-        logger.info('Prefetching Image...')
-        await Image.prefetch(LOGO_URL).catch((err: any) => {
-            logger.warn(`Image prefetch warning:`, err)
-        })
-
-        if (!Toasts) {
-            logger.error('Toasts module not found!')
-            return
-        }
-
-        logger.info('Toasts module found. Attempting to open toast.')
-
-        const toastKey = `gta-toast-${UuidModule ? UuidModule.uuid4() : Math.random()}`
-
-        Toasts.open({
-            key: toastKey,
-            content: <CountdownToast days={days} />,
-            // containerStyle: {
-            // backgroundColor: 'transparent',
-            // borderColor: 'transparent',
-            // shadowColor: 'transparent',
-            // elevation: 0,
-            // },
-            toastDurationMs: 3000,
-        })
-
-        logger.info(`Toast opened successfully with key: ${toastKey}`)
-    } catch (error) {
-        logger.error('Failed to show countdown toast:', error)
-    }
-}
-*/
 export default {
     onLoad: () => {
-        logger.info('Plugin loaded (v4)')
+        logger.info('Plugin loaded (v5)')
     },
     onUnload: () => {
         logger.info('Plugin unloaded')
