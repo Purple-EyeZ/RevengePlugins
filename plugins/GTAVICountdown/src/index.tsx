@@ -52,7 +52,6 @@ export const showCountdownToast = async () => {
                     backgroundColor: 'transparent',
                     borderColor: 'transparent',
                     shadowColor: 'transparent',
-                    elevation: 0,
                 },
                 toastDurationMs: durationSec * 1000,
             })
