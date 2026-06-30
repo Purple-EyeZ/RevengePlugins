@@ -1,6 +1,7 @@
 export const TARGET_DATE = new Date('2026-11-19T00:00:00')
 
-export const LOGO_URL = 'https://i.imgur.com/x91idXI.png'
+// export const LOGO_URL = 'https://i.imgur.com/x91idXI.png' (Old Logo)
+export const LOGO_URL = 'https://i.imgur.com/CbcIKuB.png'
 export const IMAGE_URL = 'https://i.imgur.com/M5K8i6m.jpeg'
 export const ROCKSTAR_VI_URL = 'https://www.rockstargames.com/VI'
 
