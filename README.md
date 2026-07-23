@@ -10,3 +10,4 @@ https://purple-eyez.github.io/RevengePlugins/`PLUGIN_NAME`
 - 🇺🇸 GTA VI Countdown: [Install Link](https://purple-eyez.github.io/RevengePlugins/GTAVICountdown)
 - Text Replace: [Install Link](https://purple-eyez.github.io/RevengePlugins/TextReplace)
 - Realmoji: [Install Link](https://purple-eyez.github.io/RevengePlugins/Realmoji)
+- YouBar+: [Install Link](https://purple-eyez.github.io/RevengePlugins/YouBarPlus)
