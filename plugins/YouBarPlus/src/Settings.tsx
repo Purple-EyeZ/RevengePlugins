@@ -1,8 +1,8 @@
-import Text from '@lib/components/Text'
-import { components, ReactNative } from '@revenge-mod/metro/common'
+import { components, React, ReactNative } from '@revenge-mod/metro/common'
 import { storage } from '@vendetta/plugin'
 import { useProxy } from '@vendetta/storage'
 import { getAssetIDByName } from '@vendetta/ui/assets'
+import { updateYouBar } from './patches/YouBarNotificationsButton'
 
 const { TableRowGroup, TableSwitchRow, TableRowIcon, Stack } = components
 const { ScrollView } = ReactNative
@@ -25,6 +25,12 @@ const settingsOptions = [
 export default function Settings() {
     useProxy(storage)
 
+    React.useEffect(() => {
+        return () => {
+            updateYouBar()
+        }
+    }, [])
+
     return (
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 38 }}>
             <Stack style={{ paddingVertical: 24, paddingHorizontal: 12 }} spacing={24}>
@@ -44,11 +50,6 @@ export default function Settings() {
                                 ),
                         )}
                     </TableRowGroup>
-                )}
-                {Text && (
-                    <Text variant="text-sm/normal" color="TEXT_MUTED" style={{ textAlign: 'center', marginTop: -8 }}>
-                        Changes require an app restart to take effect.
-                    </Text>
                 )}
             </Stack>
         </ScrollView>

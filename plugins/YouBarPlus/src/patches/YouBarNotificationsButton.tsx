@@ -1,8 +1,10 @@
 import { findByProps, findByTypeName } from '@revenge-mod/metro'
 import { React } from '@revenge-mod/metro/common'
-import { after } from '@vendetta/patcher'
+import { instead } from '@vendetta/patcher'
 import { storage } from '@vendetta/plugin'
 import { getAssetIDByName } from '@vendetta/ui/assets'
+
+export let updateYouBar = () => {}
 
 export default function patchYouBarNotificationsButton() {
     const YouBarNotificationsButton = findByTypeName('YouBarNotificationsButton')
@@ -14,7 +16,13 @@ export default function patchYouBarNotificationsButton() {
 
     if (!YouBarNotificationsButton) return () => {}
 
-    return after('type', YouBarNotificationsButton, (_args, res) => {
+    return instead('type', YouBarNotificationsButton, (args, OriginalRender) => {
+        const [, forceUpdate] = React.useReducer((x: number) => ~x, 0)
+
+        updateYouBar = () => forceUpdate()
+
+        const res = OriginalRender(...args)
+
         if (!res?.props?.children) return res
 
         const IconButton = res.props.children.type
