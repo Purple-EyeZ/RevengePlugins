@@ -1,7 +1,7 @@
 import { findByProps } from '@revenge-mod/metro'
 import { FluxDispatcher } from '@revenge-mod/metro/common'
 import { storage } from '@vendetta/plugin'
-import { DEFAULT_DURATION, DEFAULT_FREQUENCY, TARGET_DATE } from './constants'
+import { DEFAULT_DURATION, DEFAULT_FREQUENCY } from './constants'
 import Settings from './Settings'
 import { showCountdownToast } from './utils'
 
@@ -12,12 +12,6 @@ const ONE_DAY = 24 * ONE_HOUR
 
 storage.displayDuration ??= DEFAULT_DURATION
 storage.frequency ??= DEFAULT_FREQUENCY
-
-export const getDaysUntilRelease = () => {
-    const now = new Date()
-    const difference = TARGET_DATE.getTime() - now.getTime()
-    return Math.ceil(difference / (1000 * 60 * 60 * 24))
-}
 
 const checkAndShowToast = () => {
     const now = Date.now()
