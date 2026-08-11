@@ -9,7 +9,7 @@ const { Image } = ReactNative as any
 const Toasts = findByProps('open', 'close')
 const UuidModule = findByProps('uuid4')
 
-export const getDaysUntilRelease = () => {
+const getDaysUntilRelease = () => {
     const now = new Date()
     const difference = TARGET_DATE.getTime() - now.getTime()
     return Math.ceil(difference / (1000 * 60 * 60 * 24))
